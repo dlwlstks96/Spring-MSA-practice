@@ -23,7 +23,7 @@ public class LicenseService {
         String responseMessage = null;
         if (license != null) {
             license.setOrganizationId(organizationId);
-            responseMessage = String.format("This is the post and the" +
+            responseMessage = String.format("This is the post and the " +
                     "object is: %s", license.toString());
         }
         return responseMessage;
@@ -33,7 +33,7 @@ public class LicenseService {
         String responseMessage = null;
         if (license != null) {
             license.setOrganizationId(organizationId);
-            responseMessage = String.format("This is the put and the" +
+            responseMessage = String.format("This is the put and the " +
                     "object is: %s", license.toString());
         }
         return responseMessage;
@@ -41,8 +41,9 @@ public class LicenseService {
 
     public String deleteLicense(String licenseId, String organizationId) {
         String responseMessage = null;
-        responseMessage = String.format("Deleting license with id %s for" +
+        responseMessage = String.format("Deleting license with id %s for " +
                 "the organization %s", licenseId, organizationId);
+        return responseMessage;
     }
 
 }
