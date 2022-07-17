@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Locale;
+
 @RestController //스프링 부트에 이 서비스는 REST 기반 서비스이며, 응답은 JSON으로 서비스 요청 및 자동으로 직렬화, 역직렬화할 것이라 지정
 @RequestMapping(value="v1/organization/{organizationId}/license")
 
@@ -36,8 +38,10 @@ public class LicenseController {
     @PostMapping
     public ResponseEntity<String> createLicense(
             @PathVariable("organizationId") String organizationId,
-            @RequestBody License request) {
-        return ResponseEntity.ok(licenseService.createLicense(request, organizationId));
+            @RequestBody License request,
+            @RequestHeader(value = "Accept-Language", required = false)
+            Locale locale) {
+        return ResponseEntity.ok(licenseService.createLicense(request, organizationId, locale));
     }
 
     @DeleteMapping(value = "/{licenseId}")
