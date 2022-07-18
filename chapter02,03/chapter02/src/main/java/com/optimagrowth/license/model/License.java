@@ -1,6 +1,9 @@
 package com.optimagrowth.license.model;
 
-public class License {
+import org.springframework.hateoas.RepresentationModel;
+
+//RepresentationModel<License>는 License 모델 클래스에 링크를 추가할 수 있게 해준다.
+public class License extends RepresentationModel<License> {
 
     private int id;
     private String licenseId;
