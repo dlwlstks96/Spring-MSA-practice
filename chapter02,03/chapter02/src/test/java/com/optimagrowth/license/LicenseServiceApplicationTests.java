@@ -1,10 +1,10 @@
-package com.chap02.demo;
+package com.optimagrowth.license;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DemoApplicationTests {
+class LicenseServiceApplicationTests {
 
 	@Test
 	void contextLoads() {
