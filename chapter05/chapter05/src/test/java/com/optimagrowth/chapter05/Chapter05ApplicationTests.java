@@ -1,10 +1,10 @@
-package com.optimagrowth.configserver;
+package com.optimagrowth.chapter05;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ConfigurationServerApplicationTests {
+class Chapter05ApplicationTests {
 
 	@Test
 	void contextLoads() {
