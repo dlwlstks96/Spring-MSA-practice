@@ -2,7 +2,7 @@ spring:
   application:
     name: config-server
   profiles:
-    active: native
+    active: native, git
 
   cloud:
     config:
@@ -11,6 +11,10 @@ spring:
         native:
           #특정 파일 시스템 폴더에서 읽어 온다.
           search-locations: classpath:/config
-
+        git:
+          uri: https://github.com/klimtever/config.git
+          search-paths: licensingservice
 server:
   port: 8071
+encrypt:
+  key: secretkey
