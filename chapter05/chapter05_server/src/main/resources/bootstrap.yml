@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: licensing-service
+  profiles:
+    active: dev
+  cloud:
+    config:
+      uri: http://localhost:8071
+
+  datasource:
+    url: ${spring.datasource.url}
+    username: ${spring.datasource.username}
+    password: ${spring.datasource.password}
+    driver-class-name: ${spring.datasource.driver-class-name}
