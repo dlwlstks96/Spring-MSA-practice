@@ -11,4 +11,4 @@ eureka:
         http://${eureka.instance.hostname}:${server.port}/eureka/
 
   server:
-    waitTimeInMsWhenSyncEmpty: #서버가 요청을 받기 전 초기 대기 시간을 설정
+    waitTimeInMsWhenSyncEmpty: 5 #서버가 요청을 받기 전 초기 대기 시간을 설정
