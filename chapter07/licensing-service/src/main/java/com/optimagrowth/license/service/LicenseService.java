@@ -3,6 +3,7 @@ package com.optimagrowth.license.service;
 import java.util.List;
 import java.util.UUID;
 
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
@@ -100,6 +101,7 @@ public class LicenseService {
 
 	}
 
+	@CircuitBreaker(name="licenseService") //Resilience4j 회로 차단기를 사용하여 해당 메소드를 @CircuitBreaker로 래핑한다.
 	public List<License> getLicensesByOrganization(String organizationId) {
 		return licenseRepository.findByOrganizationId(organizationId);
 	}
