@@ -1,7 +1,9 @@
 package com.optimagrowth.license.service;
 
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
+import java.util.concurrent.TimeoutException;
 
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -103,6 +105,25 @@ public class LicenseService {
 
 	@CircuitBreaker(name="licenseService") //Resilience4j 회로 차단기를 사용하여 해당 메소드를 @CircuitBreaker로 래핑한다.
 	public List<License> getLicensesByOrganization(String organizationId) {
+		randomlyRunLong();
 		return licenseRepository.findByOrganizationId(organizationId);
+	}
+
+	private void randomlyRunLong() {
+		Random rand = new Random();
+		int randomNum = rand.nextInt(3) + 1;
+		if (randomNum == 3) sleep();
+	}
+
+	private void sleep() {
+		try {
+			System.out.println("Sleep");
+			Thread.sleep(5000);
+			throw new java.util.concurrent.TimeoutException();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (TimeoutException e) {
+			e.printStackTrace();
+		}
 	}
 }
