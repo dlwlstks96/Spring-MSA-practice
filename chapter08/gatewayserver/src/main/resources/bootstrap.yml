@@ -4,3 +4,13 @@ spring:
   cloud:
     config:
       uri: http://localhost:8071 #스프링 클라우드 config 서버의 위치
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - "gateway"
+  endpoint:
+    gateway:
+      enabled: true
