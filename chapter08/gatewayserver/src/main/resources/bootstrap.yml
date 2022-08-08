@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: gateway-server #config에서 조회될 때의 서비스 이름
+  cloud:
+    config:
+      uri: http://localhost:8071 #스프링 클라우드 config 서버의 위치
