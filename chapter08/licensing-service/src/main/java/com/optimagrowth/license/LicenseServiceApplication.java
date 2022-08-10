@@ -1,7 +1,10 @@
 package com.optimagrowth.license;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Locale;
 
+import com.optimagrowth.license.utils.UserContextInterceptor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -38,10 +41,19 @@ public class LicenseServiceApplication {
 		return messageSource;
 	}
 
-	@LoadBalanced
+	@LoadBalanced //이 RestTemplate 객체가 로드 밸런서를 사용한다는 것을 나타낸다.
 	@Bean
 	public RestTemplate getRestTemplate(){
-		return new RestTemplate();
+		RestTemplate template = new RestTemplate();
+		List interceptors = template.getInterceptors();
+		if (interceptors == null) { //RestTemplate 인스턴스에 UserContextInterceptor를 추가한다.
+			template.setInterceptors(Collections.singletonList(
+					new UserContextInterceptor()));
+		} else {
+			interceptors.add(new UserContextInterceptor());
+			template.setInterceptors(interceptors);
+		}
+		return template;
 	}
 
 }
