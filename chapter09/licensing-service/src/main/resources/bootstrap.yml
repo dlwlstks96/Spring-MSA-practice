@@ -1,0 +1,30 @@
+spring:
+    application:
+     name: licensing-service 
+    profiles:
+      active: dev
+    cloud:
+        config: 
+            uri: http://localhost:8071
+
+resilience4j.circuitbreaker:
+  instances:
+    licenseService:
+      registerHealthIndicator: true #상태 정보 엔드포인트에 대한 구성 정보 노출 여부를 설정한다.
+      ringBufferSizeInClosedState: 5 #링 버퍼의 닫힌 상태 크기를 설정한다.
+      ringBufferSizeInHalfOpenState: 3 #링 버퍼의 반열린 상태 크기를 설정한다.
+      waitDurationInOpenState: 10s #열린 상태의 대기 시간을 설정한다.
+      failureRateThreshold: 50 #실패율 임계치를 백분율(%)로 설정한다.
+      recordExceptions: #실패로 기록될 예외를 설정한다.
+        - org.springframework.web.client.HttpServerErrorException
+        - java.io.IOException
+        - java.util.concurrent.TimeoutException
+        - org.springframework.web.client.ResourceAccessException
+
+    organizationService:
+      registerHealthIndicator: true
+      ringBufferSizeInClosedState: 6
+      ringBufferSizeInHalfOpenState: 4
+      waitDurationInOpenState: 20s
+      failureRateThreshold: 60
+
